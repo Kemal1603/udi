@@ -16,6 +16,8 @@ dependencies:
     path: ../core_ui
   domain:
     path: ../domain
+  home:
+    path: ../feature/home
 
 dev_dependencies:
   flutter_lints: 2.0.1
