@@ -1,58 +1,27 @@
 part of core_ui;
 
-const LightColors _appColors = LightColors();
+const LightColors _lightColors = LightColors();
 
 final ThemeData lightTheme = ThemeData.light().copyWith(
-  // appBarTheme: _getAppBarTheme(),
-  scaffoldBackgroundColor: _appColors.white,
-  textTheme: _getTextTheme(),
-  inputDecorationTheme: _getInputDecorationTheme(),
-  primaryColor: _appColors.primaryBg,
-  colorScheme: ColorScheme.fromSwatch().copyWith(
-    secondary: _appColors.primaryBg,
-    primary: _appColors.primaryBg,
+  scaffoldBackgroundColor: _lightColors.white,
+  textTheme: _textLightTheme,
+  bottomSheetTheme: BottomSheetThemeData(
+    surfaceTintColor: null,
+    backgroundColor: _lightColors.smokeSilver,
+    elevation: 0.0,
   ),
+  iconTheme: IconThemeData(
+    color: _lightColors.smokeSilver,
+  ),
+  useMaterial3: true,
 );
 
-TextTheme _getTextTheme() {
-  return TextTheme(
-    titleMedium: AppFonts.normal13,
-    bodyMedium: AppFonts.normal13,
-  ).apply(
-    bodyColor: _appColors.primaryBg,
-    displayColor: _appColors.primaryBg,
-  );
-}
+final ThemeData darkTheme = ThemeData.dark().copyWith();
 
-InputDecorationTheme _getInputDecorationTheme() {
-  return InputDecorationTheme(
-    hintStyle: AppFonts.normal13.copyWith(color: _appColors.primaryBg),
-    border: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(AppDimens.BORDER_RADIUS_12),
-      ),
-      borderSide: BorderSide(
-        color: _appColors.primaryBg,
-      ),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(AppDimens.BORDER_RADIUS_12),
-      ),
-      borderSide: BorderSide(
-        color: _appColors.primaryBg,
-        width: 2,
-      ),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(AppDimens.BORDER_RADIUS_6),
-      ),
-      borderSide: BorderSide(
-        color: _appColors.primaryBg,
-        width: 2,
-      ),
-    ),
-    labelStyle: AppFonts.normal13.copyWith(color: _appColors.primaryBg),
-  );
-}
+TextTheme get _textLightTheme => TextTheme(
+      titleMedium: AppFonts.normal14,
+      bodyMedium: AppFonts.normal14,
+    ).apply(
+      bodyColor: _lightColors.black,
+      displayColor: _lightColors.black,
+    );
