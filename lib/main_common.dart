@@ -1,8 +1,10 @@
 import 'package:core/core.dart';
+import 'package:core/localization/app_localization.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/app_router/app_router.dart';
+import 'package:navigation/di/navigation_di.dart';
 
 Future<void> mainCommon(Flavor flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,12 +13,9 @@ Future<void> mainCommon(Flavor flavor) async {
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('ru', 'RU'),
-      ],
-      path: 'assets/translations',
-      fallbackLocale: const Locale('en', 'US'),
+      supportedLocales: AppLocalization.supportedLocales,
+      path: AppLocalization.langsFolderPath,
+      fallbackLocale: AppLocalization.fallbackLocale,
       child: const App(),
     ),
   );
@@ -27,6 +26,7 @@ void _setupDI(Flavor flavor) {
     scopeName: unauthScope,
     init: (_) {
       AppDI.initDependencies(flavor);
+      setupNavigationDependencies();
     },
   );
 }
