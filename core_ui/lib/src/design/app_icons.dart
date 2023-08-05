@@ -13,17 +13,18 @@ class AppIconSvg {
         width: width,
         height: height,
         fit: fit ?? BoxFit.contain,
+        color: color,
       );
 }
 
 class AppIcons {
-  static Icon home = const Icon(
+  static Icon home = Icon(
     Icons.home,
-    size: AppDimens.itemSize24,
+    size: AppDimens.ITEM_SIZE_24,
   );
 
-  static Icon clear = const Icon(
+  static Icon clear = Icon(
     Icons.cancel,
-    size: AppDimens.itemSize24,
+    size: AppDimens.ITEM_SIZE_24,
   );
 }
