@@ -31,10 +31,17 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-
+**.lock
+*.lock
+*.gm.dart
+**.gm.dart
+**.g.dart
+*.g.dart
+**.gr.dart
+*.gr.dart
 # Symbolication related
 app.*.symbols
-
+*/**/Podfile
 # Obfuscation related
 app.*.map.json
 
@@ -42,6 +49,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
+.metadata
 # Monarch related
 .monarch/

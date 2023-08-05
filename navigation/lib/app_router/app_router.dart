@@ -1,21 +1,39 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:home/home.dart';
+import 'package:main/main.dart';
+
+export 'package:auto_route/auto_route.dart';
+export 'package:home/home.dart';
+export 'package:main/main.dart';
 
 part 'app_router.gr.dart';
 
-@MaterialAutoRouter(
-  replaceInRouteName: 'Screen,Route',
-  routes: <AutoRoute>[
-    CustomRoute<String>(
-      transitionsBuilder: TransitionsBuilders.fadeIn,
-      durationInMilliseconds: 400,
-      path: '/',
-      name: 'HomeRoute',
-      page: HomeScreen,
-      initial: true,
-      children: <AutoRoute>[],
-    ),
+@AutoRouterConfig(
+  modules: [
+    MainModule,
+    HomeModule,
   ],
 )
-class AppRouter extends _$AppRouter {}
+class AppRouter extends _$AppRouter {
+  @override
+  RouteType get defaultRouteType => const RouteType.material();
+
+  @override
+  final List<AutoRoute> routes = [
+    CustomRoute(
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+      durationInMilliseconds: 400,
+      page: MainRoute.page,
+      initial: true,
+      path: '/',
+      children: [
+        CustomRoute(
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          durationInMilliseconds: 400,
+          page: HomeRoute.page,
+          initial: true,
+        ),
+      ],
+    ),
+  ];
+}
