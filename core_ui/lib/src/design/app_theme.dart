@@ -7,11 +7,11 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
   textTheme: _textLightTheme,
   bottomSheetTheme: BottomSheetThemeData(
     surfaceTintColor: null,
-    backgroundColor: _lightColors.smokeSilver,
+    backgroundColor: _lightColors.transparent,
     elevation: 0.0,
   ),
   iconTheme: IconThemeData(
-    color: _lightColors.smokeSilver,
+    color: _lightColors.alizarin,
   ),
   useMaterial3: true,
 );

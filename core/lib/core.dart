@@ -1,6 +1,6 @@
 library core;
 
-
+export 'package:bloc/bloc.dart';
 export 'package:dio/dio.dart';
 
 export 'config/app_config.dart';

@@ -7,13 +7,13 @@ class AppShadows {
   static const double _largeSpreadRadius = 1.0;
 
   static BoxShadow standart(BuildContext context) => BoxShadow(
-        color: AppColors.of(context).blue.withOpacity(0.5),
+        color: AppColors.of(context).philippineSilver.withOpacity(0.5),
         offset: _shadowOffset,
         blurRadius: _standartBlurRadius,
       );
 
   static BoxShadow large(BuildContext context) => BoxShadow(
-        color: AppColors.of(context).blue.withOpacity(0.5),
+        color: AppColors.of(context).philippineSilver.withOpacity(0.5),
         offset: _shadowOffset,
         blurRadius: _largeBlurRadius,
         spreadRadius: _largeSpreadRadius,
