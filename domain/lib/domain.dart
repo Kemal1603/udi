@@ -6,3 +6,4 @@ export 'repositories/repositories.dart';
 export 'requests/requests.dart';
 export 'usecases/export_usecases.dart';
 export 'usecases/usecase.dart';
+export 'utils/model_list_util.dart';

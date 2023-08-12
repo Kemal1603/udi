@@ -1,9 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../domain.dart';
+
 part 'brand_model.freezed.dart';
 
 @freezed
-class BrandModel with _$BrandModel {
+class BrandModel extends BaseItemModel with _$BrandModel {
   factory BrandModel({
     required String name,
     required int id,
