@@ -1,5 +1,5 @@
 enum Flavor {
-stage,
+  stage,
   dev,
 }
 
@@ -18,13 +18,13 @@ class AppConfig {
     String baseUrl;
     String webSocketUrl;
     switch (flavor) {
-    case Flavor.stage:
-        baseUrl = '';
+      case Flavor.stage:
+        baseUrl = 'http://stage.7ft.by:8000/v1';
         webSocketUrl = '';
         break;
-    
+
       case Flavor.dev:
-        baseUrl = '';
+        baseUrl = 'http://stage.7ft.by:8000/v1';
         webSocketUrl = '';
         break;
     }

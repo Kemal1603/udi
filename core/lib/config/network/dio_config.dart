@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+
 import '../app_config.dart';
 import 'interceptors/dio_log_interceptor.dart';
 
@@ -10,7 +11,7 @@ part 'interceptors/response_interceptor.dart';
 
 class DioConfig {
   final AppConfig appConfig;
-  static const int timeout = 10 * 1000;
+  static const Duration timeout = Duration(seconds: 10);
 
   final Dio _dio = Dio();
 
@@ -19,7 +20,12 @@ class DioConfig {
   DioConfig({required this.appConfig}) {
     _dio
       ..options.baseUrl = appConfig.baseUrl
-      ..interceptors.addAll(<Interceptor>[
+      ..options.responseType = ResponseType.json
+      ..options.sendTimeout = timeout
+      ..options.receiveTimeout = timeout
+      ..options.connectTimeout = timeout
+      ..options.receiveDataWhenStatusError = true
+      ..interceptors.addAll([
         RequestInterceptor(_dio, headers),
         ErrorInterceptor(_dio),
         ResponseInterceptor(_dio),
@@ -27,7 +33,7 @@ class DioConfig {
       ]);
   }
 
-  Map<String, String> headers = <String, String>{};
+  Map<String, String> headers = {};
 
   void setToken(String? token) {
     headers['authtoken'] = token ?? '';

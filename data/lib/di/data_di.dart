@@ -1,6 +1,5 @@
 import 'package:core/config/app_config.dart';
 import 'package:core/config/network/dio_config.dart';
-
 import 'package:core/di/app_di.dart';
 
 import '../errors/error_handler.dart';
@@ -22,7 +21,6 @@ class DataDI {
     );
   }
 
-
   void _initApi() {
     appLocator.registerLazySingleton<ErrorHandler>(
       ErrorHandler.new,
@@ -31,8 +29,8 @@ class DataDI {
     appLocator.registerLazySingleton<ApiProvider>(
       () => ApiProvider(
         appLocator<DioConfig>().dio,
+        baseUrl: appLocator<AppConfig>().baseUrl,
       ),
     );
   }
-
 }
