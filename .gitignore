@@ -38,6 +38,8 @@ migrate_working_dir/
 **.g.dart
 *.g.dart
 **.gr.dart
+**.freezed.dart
+*.freezed.dart
 *.gr.dart
 # Symbolication related
 app.*.symbols
