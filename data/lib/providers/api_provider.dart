@@ -4,8 +4,12 @@ import 'package:retrofit/retrofit.dart';
 
 part 'api_provider.g.dart';
 
+@RestApi()
 abstract class ApiProvider {
-  factory ApiProvider(Dio dio) = _ApiProvider;
+  factory ApiProvider(
+    Dio dio, {
+    String baseUrl,
+  }) = _ApiProvider;
 
   void setToken(String? token);
 
