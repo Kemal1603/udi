@@ -10,6 +10,7 @@ class AppDropDownWidget extends StatefulWidget {
   final bool withIcons;
   final double width;
   final String? hint;
+  final String? label;
   final bool isAllAsDefault;
   final bool isExpanded;
   final void Function(List<String>?) onChanged;
@@ -19,6 +20,7 @@ class AppDropDownWidget extends StatefulWidget {
     required this.onChanged,
     this.width = 250,
     this.hint,
+    this.label,
     this.hasCheckbox = false,
     this.withIcons = false,
     this.isAllAsDefault = false,
@@ -350,111 +352,115 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
         hoverColor: colors.nightBlue5,
         focusColor: colors.transparent,
       ),
-      child: Container(
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-          borderRadius: _isOpen
-              ? const BorderRadius.vertical(
-                  top: Radius.circular(AppDimens.BORDER_RADIUS_4),
-                )
-              : BorderRadius.circular(AppDimens.BORDER_RADIUS_4),
-        ),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButton2<String>(
-            onMenuStateChange: (bool isOpen) {
-              setState(() {
-                _isOpen = isOpen;
-              });
-            },
-            selectedItemBuilder: (_) {
-              return <Widget>[
-                Center(
-                  child: Container(
-                    width: widget.width - AppDimens.ITEM_SIZE_25,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppDimens.PADDING_10,
-                    ),
-                    child: Text(
-                      _getSelectedItemText(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppFonts.normal16.copyWith(
-                        color: colors.matterhorn,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          if (widget.label != null)
+            Text(
+              '${widget.label}',
+              style: AppFonts.bold18,
+            ),
+          const SizedBox(height: 10),
+          Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              borderRadius: _isOpen
+                  ? const BorderRadius.vertical(
+                      top: Radius.circular(AppDimens.BORDER_RADIUS_10),
+                    )
+                  : BorderRadius.circular(AppDimens.BORDER_RADIUS_15),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton2<String>(
+                onMenuStateChange: (bool isOpen) => setState(() => _isOpen = isOpen),
+                selectedItemBuilder: (_) {
+                  return <Widget>[
+                    Center(
+                      child: Container(
+                        width: widget.width - AppDimens.ITEM_SIZE_25,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppDimens.PADDING_10,
+                        ),
+                        child: Text(
+                          _getSelectedItemText(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppFonts.normal16.copyWith(
+                            color: colors.matterhorn,
+                          ),
+                        ),
                       ),
+                    ),
+                  ];
+                },
+                onChanged: _onChanged,
+                items: widget.hasCheckbox ? _buildListWithCheckbox() : _buildListWithoutCheckbox(),
+                hint: Container(
+                  width: widget.width - AppDimens.ITEM_SIZE_25,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppDimens.PADDING_10,
+                  ),
+                  child: Text(
+                    _getSelectedItemText(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppFonts.normal16.copyWith(
+                      color: colors.matterhorn,
                     ),
                   ),
                 ),
-              ];
-            },
-            onChanged: (String? value) {
-              _onChanged(value);
-            },
-            items: widget.hasCheckbox ? _buildListWithCheckbox() : _buildListWithoutCheckbox(),
-            hint: Container(
-              width: widget.width - AppDimens.ITEM_SIZE_25,
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimens.PADDING_10,
-              ),
-              child: Text(
-                _getSelectedItemText(),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
                 style: AppFonts.normal16.copyWith(
                   color: colors.matterhorn,
                 ),
-              ),
-            ),
-            style: AppFonts.normal16.copyWith(
-              color: colors.matterhorn,
-            ),
-            isExpanded: widget.isExpanded,
-            buttonStyleData: ButtonStyleData(
-              height: AppDimens.ITEM_SIZE_40,
-              width: widget.width,
-              padding: EdgeInsets.zero,
-              decoration: BoxDecoration(
-                border: _isOpen
-                    ? Border(
-                        bottom: BorderSide(color: colors.alizarin, width: 1),
-                      )
-                    : null,
-                color: _isOpen ? colors.alizarin10 : colors.whiteSmoke,
-              ),
-              elevation: 0,
-            ),
-            iconStyleData: IconStyleData(
-              iconSize: AppDimens.ITEM_SIZE_20,
-              openMenuIcon: Icon(
-                Icons.keyboard_arrow_up,
-                color: colors.alizarin,
-              ),
-              icon: _getSuffixIcon(),
-            ),
-            dropdownStyleData: DropdownStyleData(
-              width: widget.width,
-              padding: EdgeInsets.zero,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.vertical(
-                  bottom: Radius.circular(AppDimens.BORDER_RADIUS_4),
-                ),
-                color: colors.whiteSmoke,
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                    color: colors.matterhorn.withOpacity(0.5),
-                    blurRadius: 2,
-                    offset: const Offset(2, 2), // Shadow position
+                isExpanded: widget.isExpanded,
+                buttonStyleData: ButtonStyleData(
+                  height: AppDimens.ITEM_SIZE_40,
+                  width: widget.width,
+                  padding: EdgeInsets.zero,
+                  decoration: BoxDecoration(
+                    border: _isOpen
+                        ? Border(
+                            bottom: BorderSide(color: colors.alizarin),
+                          )
+                        : null,
+                    color: _isOpen ? colors.alizarin10 : colors.whiteSmoke,
                   ),
-                ],
+                  elevation: 0,
+                ),
+                iconStyleData: IconStyleData(
+                  iconSize: AppDimens.ITEM_SIZE_20,
+                  openMenuIcon: Icon(
+                    Icons.keyboard_arrow_up,
+                    color: colors.alizarin,
+                  ),
+                  icon: _getSuffixIcon(),
+                ),
+                dropdownStyleData: DropdownStyleData(
+                  width: widget.width,
+                  padding: EdgeInsets.zero,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.vertical(
+                      bottom: Radius.circular(AppDimens.BORDER_RADIUS_4),
+                    ),
+                    color: colors.whiteSmoke,
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: colors.matterhorn.withOpacity(0.5),
+                        blurRadius: 2,
+                        offset: const Offset(2, 2), // Shadow position
+                      ),
+                    ],
+                  ),
+                  elevation: 0,
+                ),
+                menuItemStyleData: const MenuItemStyleData(
+                  height: AppDimens.ITEM_SIZE_45,
+                  padding: EdgeInsets.zero,
+                ),
               ),
-              elevation: 0,
-              offset: const Offset(0, 0),
-            ),
-            menuItemStyleData: const MenuItemStyleData(
-              height: AppDimens.ITEM_SIZE_45,
-              padding: EdgeInsets.zero,
             ),
           ),
-        ),
+        ],
       ),
     );
   }

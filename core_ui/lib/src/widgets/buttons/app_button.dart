@@ -58,10 +58,10 @@ class _AppButtonState extends State<AppButton> {
     if (widget.isDisabled) {
       backgroundColor = widget.color ?? colors.alizarin10;
       onTap = null;
-      child = widget.text != null ? _textWidget(context) : widget.childWidget ?? SizedBox();
+      child = widget.text != null ? _textWidget(context) : widget.childWidget ?? const SizedBox();
     } else if (_isHovered) {
       backgroundColor = widget.hoveredBackgroundColor ?? colors.alizarinHovered;
-      child = widget.text != null ? _textWidget(context) : widget.childWidget ?? SizedBox();
+      child = widget.text != null ? _textWidget(context) : widget.childWidget ?? const SizedBox();
       onTap = widget.onPressed;
     } else if (widget.isLoading) {
       backgroundColor = colors.alizarin10;
@@ -71,11 +71,11 @@ class _AppButtonState extends State<AppButton> {
       backgroundColor = widget.color ?? colors.alizarin10;
       onTap = widget.onPressed;
       bordersColor = (widget.borderColor == null) ? colors.alizarin : widget.borderColor!;
-      child = widget.text != null ? _textWidget(context) : widget.childWidget ?? SizedBox();
+      child = widget.text != null ? _textWidget(context) : widget.childWidget ?? const SizedBox();
     }
 
     return InkWell(
-      onHover: (bool isHovered) => _onHover(isHovered),
+      onHover: _onHover,
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -107,7 +107,7 @@ class _AppButtonState extends State<AppButton> {
   }
 
   Widget _loadingWidget() {
-    return Center(
+    return const Center(
       child: CircularProgressIndicator.adaptive(),
     );
   }

@@ -16,6 +16,7 @@ export 'navigation_header.dart';
 export 'page_selector_widget.dart';
 export 'radio_buttons/radio_button_group.dart';
 export 'responsive_widgets/base_screen.dart';
+export 'text_fields/app_text_form_field.dart';
 export 'toggle_button_row/toggle_button_row.dart';
 export 'update_button.dart';
 export 'utils/box_size_util.dart';
