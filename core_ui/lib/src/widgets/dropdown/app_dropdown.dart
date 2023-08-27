@@ -43,16 +43,6 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
   @override
   void initState() {
     super.initState();
-    _onInit();
-  }
-
-  @override
-  void didUpdateWidget(covariant AppDropDownWidget oldWidget) {
-    _onInit();
-    super.didUpdateWidget(oldWidget);
-  }
-
-  void _onInit() {
     values.addAll(widget.items);
     if (widget.isAllAsDefault) {
       selectedItems.addAll(values);
@@ -66,6 +56,11 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
     if (widget.isAllAsDefault) {
       _checkAllState.value = _CheckAllState.checked;
     }
+  }
+
+  @override
+  void didUpdateWidget(covariant AppDropDownWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
   }
 
   void _onChanged([String? value]) {

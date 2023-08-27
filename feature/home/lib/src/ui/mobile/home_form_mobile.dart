@@ -88,6 +88,7 @@ class HomeFormMobile extends StatelessWidget {
                         ),
                         const SizedBox(height: 25),
                         AppDropDownWidget(
+                          hasCheckbox: true,
                           label: 'Марка',
                           items: state.brands.getNames,
                           onChanged: (List<String>? items) {
@@ -104,9 +105,39 @@ class HomeFormMobile extends StatelessWidget {
                         ),
                         const SizedBox(height: 25),
                         AppDropDownWidget(
+                          hasCheckbox: true,
                           label: 'Модель',
                           items: state.models.getNames,
-                          onChanged: (List<String>? item) {},
+                          onChanged: (List<String>? items) {
+                            if (items == null) return;
+
+                            final List<int> modelsIDs = items.map((String item) {
+                              final ModelModel model =
+                                  state.models.firstWhere((ModelModel model) => model.name == item);
+                              return model.id;
+                            }).toList();
+
+                            context
+                                .read<HomeBloc>()
+                                .add(FetchGenerationsEvent(modelsIDs: modelsIDs));
+                          },
+                        ),
+                        const SizedBox(height: 25),
+                        AppDropDownWidget(
+                          hasCheckbox: true,
+                          label: 'Поколение',
+                          items: state.generations.getNames,
+                          onChanged: (List<String>? items) {
+                            if (items == null) return;
+
+                            final List<int> generationssIDs = items.map((String item) {
+                              final GenerationModel generations = state.generations.firstWhere(
+                                  (GenerationModel generations) => generations.name == item);
+                              return generations.id;
+                            }).toList();
+
+                            // TODO(Kemal): Handle Remain
+                          },
                         ),
                         const SizedBox(height: 25),
                         Text(

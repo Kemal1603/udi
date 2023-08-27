@@ -9,3 +9,9 @@ class FetchModelsEvent extends HomeEvent {
 
   FetchModelsEvent({required this.brandsIDs});
 }
+
+class FetchGenerationsEvent extends HomeEvent {
+  final List<int> modelsIDs;
+
+  FetchGenerationsEvent({required this.modelsIDs});
+}

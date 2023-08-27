@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/usecases/filters/fetch_brand_usecase.dart';
+import 'package:domain/usecases/filters/fetch_generation_usecase.dart';
 import 'package:domain/usecases/filters/fetch_models_usecase.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       create: (BuildContext context) => HomeBloc(
         fetchBrandUseCase: appLocator<FetchBrandUseCase>(),
         fetchModelUseCase: appLocator<FetchModelUseCase>(),
+        fetchGenerationUseCase: appLocator<FetchGenerationUseCase>(),
       ),
       child: BaseScreen(
         mobileBuilder: (_) => const HomeFormMobile(),
