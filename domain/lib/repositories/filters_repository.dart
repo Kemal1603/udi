@@ -10,4 +10,6 @@ abstract class FiltersRepository {
   Future<List<BodyTypeModel>> fetchBodyTypes(List<int> familyIds);
 
   Future<List<AdvertModel>> fetchAdverts(AdvertRequest request);
+
+  Future<List<CountryModel>> fetchCountry();
 }

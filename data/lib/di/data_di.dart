@@ -59,5 +59,8 @@ class DataDI {
     appLocator.registerLazySingleton<FetchAdvertUseCase>(
       () => FetchAdvertUseCase(filtersRepository: appLocator<FiltersRepository>()),
     );
+    appLocator.registerLazySingleton<FetchCountriesUseCase>(
+      () => FetchCountriesUseCase(filtersRepository: appLocator<FiltersRepository>()),
+    );
   }
 }
