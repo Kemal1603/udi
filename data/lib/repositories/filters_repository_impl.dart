@@ -70,4 +70,13 @@ class FiltersRepositoryImpl implements FiltersRepository {
 
     return models.map(ModelMapper.toModel).toList();
   }
+
+  @override
+  Future<List<CountryModel>> fetchCountry() async {
+    final List<CountryEntity> country = await safeRequest(
+      _apiProvider.fetchCountry,
+    );
+
+    return country.map(CountryMapper.toModel).toList();
+  }
 }

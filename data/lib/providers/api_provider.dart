@@ -41,4 +41,7 @@ abstract class ApiProvider {
     @Query('body_type_id__in') List<int>? bodyTypeIds,
     @Query('family_id__in') List<int>? familyIds,
   });
+
+  @GET(ApiConstants.country)
+  Future<List<CountryEntity>> fetchCountry();
 }
