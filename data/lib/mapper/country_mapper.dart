@@ -13,7 +13,7 @@ abstract class CountryMapper {
   static CountryModel toModel(CountryEntity entity) {
     return CountryModel(
       id: entity.id,
-      name: entity.name,
+      name: entity.name.isEmpty ? entity.code : entity.name,
       code: entity.code,
     );
   }
