@@ -48,7 +48,6 @@ class HomeFormMobile extends StatelessWidget {
                         ),
                         const SizedBox(height: 45),
                         AppDropDownWidget(
-                          width: MediaQuery.sizeOf(context).width * 0.6,
                           label: 'Страна',
                           items: const <String>[
                             'Item 1',
@@ -91,15 +90,10 @@ class HomeFormMobile extends StatelessWidget {
                           hasCheckbox: true,
                           label: 'Марка',
                           items: state.brands.getNames,
+                          hasCheckbox: true,
                           onChanged: (List<String>? items) {
                             if (items == null) return;
-
-                            final List<int> brandsIDs = items.map((String item) {
-                              final BrandModel brand = state.brands
-                                  .firstWhere((BrandModel brandModel) => brandModel.name == item);
-                              return brand.id;
-                            }).toList();
-
+                            final List<int> brandsIDs = state.brands.getIdsByName(items);
                             context.read<HomeBloc>().add(FetchModelsEvent(brandsIDs: brandsIDs));
                           },
                         ),
