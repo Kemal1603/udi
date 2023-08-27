@@ -43,6 +43,16 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
   @override
   void initState() {
     super.initState();
+    _onInit();
+  }
+
+  @override
+  void didUpdateWidget(covariant AppDropDownWidget oldWidget) {
+    _onInit();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void _onInit() {
     values.addAll(widget.items);
     if (widget.isAllAsDefault) {
       selectedItems.addAll(values);
@@ -386,7 +396,7 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: AppFonts.normal16.copyWith(
-                            color: colors.matterhorn,
+                            color: colors.white,
                           ),
                         ),
                       ),
@@ -418,12 +428,15 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
                   width: widget.width,
                   padding: EdgeInsets.zero,
                   decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
                     border: _isOpen
                         ? Border(
                             bottom: BorderSide(color: colors.alizarin),
                           )
                         : null,
-                    color: _isOpen ? colors.alizarin10 : colors.whiteSmoke,
+                    color: _isOpen
+                        ? AppColors.of(context).darkGray
+                        : AppColors.of(context).gainsboroLight,
                   ),
                   elevation: 0,
                 ),

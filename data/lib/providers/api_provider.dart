@@ -13,30 +13,28 @@ abstract class ApiProvider {
     String baseUrl,
   }) = _ApiProvider;
 
-  void setToken(String? token);
-
   @GET(ApiConstants.brand)
   Future<List<BrandEntity>> fetchBrands();
 
   @GET(ApiConstants.model)
   Future<List<ModelEntity>> fetchModels({
-    @Query('brand_id__in') List<int> brandIds,
+    @Query('brand_id__in') required List<int> brandIds,
   });
 
   @GET(ApiConstants.generation)
   Future<List<GenerationEntity>> fetchGeneration({
-    @Query('model_id__in') List<int> modelIds,
+    @Query('model_id__in') required List<int> modelIds,
   });
 
   @GET(ApiConstants.bodyType)
   Future<List<BodyTypeEntity>> fetchBodyTypes({
-    @Query('family_id__in') List<int> familyIds,
+    @Query('family_id__in') required List<int> familyIds,
   });
 
   @GET(ApiConstants.advert)
   Future<List<AdvertEntity>> fetchAdverts({
-    @Query('page') int page,
-    @Query('size') int pageSize,
+    @Query('page') required int page,
+    @Query('size') required int pageSize,
     @Query('brand_id__in') List<int>? brandIds,
     @Query('model_id__in') List<int>? modelIds,
     @Query('generation_id__in') List<int>? generationIds,

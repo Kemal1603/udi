@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core_ui.dart';
 import 'expanded_button.dart';
 
 class ToggleButtonRow extends StatefulWidget {
@@ -30,7 +31,7 @@ class _ToggleButtonRowState extends State<ToggleButtonRow> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: AppColors.of(context).gainsboroLight,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(

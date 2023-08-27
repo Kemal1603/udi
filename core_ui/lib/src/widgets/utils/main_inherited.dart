@@ -19,7 +19,6 @@ class LocalizationWidget extends InheritedWidget {
 
   @override
   bool updateShouldNotify(LocalizationWidget oldWidget) {
-    print('%updateShouldNotify%');
     return true;
   }
 }
