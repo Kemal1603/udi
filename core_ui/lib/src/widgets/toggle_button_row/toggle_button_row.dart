@@ -35,7 +35,7 @@ class _ToggleButtonRowState extends State<ToggleButtonRow> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
-        children: [
+        children: <Widget>[
           for (int i = 0; i < widget.options.length; i++)
             ExpandedButton(
               index: i,

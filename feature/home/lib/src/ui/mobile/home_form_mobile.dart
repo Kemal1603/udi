@@ -67,24 +67,7 @@ class HomeFormMobile extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 29),
-                        Text(
-                          'Цена',
-                          style: AppFonts.bold18.copyWith(color: Colors.black),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: <Widget>[
-                            AppTextFormField(
-                              controller: TextEditingController(),
-                              hintText: 'От',
-                            ),
-                            const SizedBox(width: 25),
-                            AppTextFormField(
-                              controller: TextEditingController(),
-                              hintText: 'До',
-                            ),
-                          ],
-                        ),
+                        const RangeRow(title: 'Цена'),
                         const SizedBox(height: 25),
                         AppDropDownWidget(
                           hasCheckbox: true,
@@ -133,44 +116,108 @@ class HomeFormMobile extends StatelessWidget {
                           },
                         ),
                         const SizedBox(height: 25),
-                        Text(
-                          'Год выпуска',
-                          style: AppFonts.bold18.copyWith(color: Colors.black),
+                        const RangeRow(title: 'Год выпуска'),
+                        const SizedBox(height: 25),
+                        const RangeRow(title: 'Пробег'),
+                        const SizedBox(height: 25),
+                        AppCheckBoxGroup(
+                          title: 'Коробка передач',
+                          onChanged: (List<String> options) {},
+                          options: const <String>[
+                            'Автомат',
+                            'Механика',
+                            'Робот',
+                          ],
                         ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: <Widget>[
-                            AppTextFormField(
-                              controller: TextEditingController(),
-                              hintText: 'От',
-                            ),
-                            const SizedBox(width: 25),
-                            AppTextFormField(
-                              controller: TextEditingController(),
-                              hintText: 'До',
-                            ),
+                        const SizedBox(height: 15),
+                        AppCheckBoxGroup(
+                          title: 'Тип двигателя',
+                          onChanged: (List<String> options) {},
+                          options: const <String>[
+                            'Бензин',
+                            'Газ',
+                            'Дизель',
                           ],
                         ),
                         const SizedBox(height: 25),
-                        Text(
-                          'Пробег',
-                          style: AppFonts.bold18.copyWith(color: Colors.black),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: <Widget>[
-                            AppTextFormField(
-                              controller: TextEditingController(),
-                              hintText: 'От',
-                            ),
-                            const SizedBox(width: 25),
-                            AppTextFormField(
-                              controller: TextEditingController(),
-                              hintText: 'До',
-                            ),
+                        const RangeRow(title: 'Мощность двигателя'),
+                        const SizedBox(height: 15),
+                        AppCheckBoxGroup(
+                          title: 'Привод',
+                          onChanged: (List<String> options) {},
+                          options: const <String>[
+                            'Передний',
+                            'Задний',
+                            'Полный',
                           ],
                         ),
-                        const SizedBox(height: 25),
+                        const SizedBox(height: 15),
+                        const ToggleGroupWidget(
+                          title: 'Состояние',
+                          options: <String>[
+                            'Все',
+                            'Кроме битых',
+                            'Битые',
+                          ],
+                        ),
+                        const SizedBox(height: AppDimens.PADDING_25),
+                        const ToggleGroupWidget(
+                          title: 'Регистрация автомобиля',
+                          options: <String>[
+                            'Неважна',
+                            'Есть',
+                            'Нет',
+                          ],
+                        ),
+                        const SizedBox(height: AppDimens.PADDING_25),
+                        AppCheckBoxGroup(
+                          title: 'Тип кузова',
+                          onChanged: (List<String> options) {},
+                          options: const <String>[
+                            'Седан',
+                            'Купе',
+                            'Универсал',
+                            'Внедорожник',
+                            'Хетчбек',
+                          ],
+                        ),
+                        const SizedBox(height: AppDimens.PADDING_15),
+                        const ToggleGroupWidget(
+                          title: 'Руль',
+                          options: <String>[
+                            'Все',
+                            'Левый',
+                            'Правый',
+                          ],
+                        ),
+                        const SizedBox(height: AppDimens.PADDING_25),
+                        const ToggleGroupWidget(
+                          title: 'Продавцы',
+                          options: <String>[
+                            'Все',
+                            'Частный',
+                            'Дилеры',
+                          ],
+                        ),
+                        const SizedBox(height: AppDimens.PADDING_25),
+                        Text('Сортировка', style: AppFonts.bold18),
+                        RadioButtonGroup(
+                          items: const <String>[
+                            'По умолчанию',
+                            'По дате',
+                            'Дешевле',
+                            'Дороже',
+                            'По удаленности',
+                          ],
+                          onItemSelected: (String item) {},
+                        ),
+                        const SizedBox(height: AppDimens.PADDING_45),
+                        AppButton(
+                          text: 'Применить',
+                          onPressed: () {},
+                          verticalPadding: AppDimens.PADDING_12,
+                          radius: AppDimens.BORDER_RADIUS_10,
+                        ),
                         const Spacer(),
                       ],
                     ),
