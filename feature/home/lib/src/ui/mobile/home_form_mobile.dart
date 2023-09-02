@@ -73,7 +73,7 @@ class HomeFormMobile extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         Row(
-                          children: [
+                          children: <Widget>[
                             AppTextFormField(
                               controller: TextEditingController(),
                               hintText: 'От',
@@ -90,7 +90,6 @@ class HomeFormMobile extends StatelessWidget {
                           hasCheckbox: true,
                           label: 'Марка',
                           items: state.brands.getNames,
-                          hasCheckbox: true,
                           onChanged: (List<String>? items) {
                             if (items == null) return;
                             final List<int> brandsIDs = state.brands.getIdsByName(items);
@@ -159,7 +158,7 @@ class HomeFormMobile extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         Row(
-                          children: [
+                          children: <Widget>[
                             AppTextFormField(
                               controller: TextEditingController(),
                               hintText: 'От',
