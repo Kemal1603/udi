@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:home/src/ui/mobile/widgets/item_widget.dart';
 
 import '../../bloc/home_bloc.dart';
 
@@ -228,6 +229,11 @@ class HomeFormMobile extends StatelessWidget {
           ),
           appBar: AppBar(
             title: const Text('CAR BY'),
+          ),
+          body: Column(
+            children: <Widget>[
+              ItemWidget(),
+            ],
           ),
         );
       },
