@@ -9,7 +9,7 @@ class ModelEntity with _$ModelEntity {
     @Default('') @JsonKey(name: 'name') String name,
     @Default(0) @JsonKey(name: 'id') int id,
     @Default(0) @JsonKey(name: 'brand_id') int brandId,
-    @Default(0) @JsonKey(name: 'family_id') int familyId,
+    @Default(0) @JsonKey(name: 'advert_count') int advertCount,
   }) = _ModelEntity;
 
   factory ModelEntity.fromJson(Map<String, dynamic> json) => _$ModelEntityFromJson(json);

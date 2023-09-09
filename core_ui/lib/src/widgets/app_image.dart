@@ -14,7 +14,7 @@ class AppImage extends StatelessWidget {
   final double? width;
   final String image;
   final TextStyle? textStyle;
-  final BorderRadius? borderRadius;
+  final BorderRadius borderRadius;
   final BoxFit? fit;
   final Color? color;
 

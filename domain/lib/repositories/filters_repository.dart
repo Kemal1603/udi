@@ -12,4 +12,10 @@ abstract class FiltersRepository {
   Future<List<AdvertModel>> fetchAdverts(AdvertRequest request);
 
   Future<List<CountryModel>> fetchCountry();
+
+  Future<List<GearTypeModel>> fetchGearTypes();
+
+  Future<List<FuelTypeModel>> fetchFuelTypes();
+
+  Future<List<FamilyModel>> fetchFamilies();
 }

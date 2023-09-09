@@ -6,6 +6,7 @@ abstract class BrandMapper {
     return BrandEntity(
       id: model.id,
       name: model.name,
+      advertCount: model.advertCount,
     );
   }
 
@@ -13,6 +14,7 @@ abstract class BrandMapper {
     return BrandModel(
       id: entity.id,
       name: entity.name,
+      advertCount: entity.advertCount,
     );
   }
 }

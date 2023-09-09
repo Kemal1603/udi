@@ -7,6 +7,7 @@ abstract class BodyTypeMapper {
       id: model.id,
       name: model.name,
       familyId: model.familyId,
+      advertCount: model.advertCount,
     );
   }
 
@@ -15,6 +16,7 @@ abstract class BodyTypeMapper {
       id: entity.id,
       name: entity.name,
       familyId: entity.familyId,
+      advertCount: entity.advertCount,
     );
   }
 }

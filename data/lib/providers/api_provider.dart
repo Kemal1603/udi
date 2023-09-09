@@ -21,6 +21,9 @@ abstract class ApiProvider {
     @Query('brand_id__in') required List<int> brandIds,
   });
 
+  @GET(ApiConstants.family)
+  Future<List<FamilyEntity>> fetchFamily();
+
   @GET(ApiConstants.generation)
   Future<List<GenerationEntity>> fetchGeneration({
     @Query('model_id__in') required List<int> modelIds,
@@ -44,4 +47,10 @@ abstract class ApiProvider {
 
   @GET(ApiConstants.country)
   Future<List<CountryEntity>> fetchCountry();
+
+  @GET(ApiConstants.fuel)
+  Future<List<FuelTypeEntity>> fetchFuelTypes();
+
+  @GET(ApiConstants.gear)
+  Future<List<GearTypeEntity>> fetchGearTypes();
 }

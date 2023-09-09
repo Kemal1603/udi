@@ -2,5 +2,8 @@ export 'advert/advert_entity.dart';
 export 'body_type/body_type_entity.dart';
 export 'brand/brand_entity.dart';
 export 'country/country_entity.dart';
+export 'family/family_entity.dart';
+export 'fuel_type/fuel_type_entity.dart';
+export 'gear_type/gear_type_entity.dart';
 export 'generation/generation_entity.dart';
 export 'model/model_entity.dart';
