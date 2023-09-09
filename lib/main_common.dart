@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:data/di/data_di.dart';
 import 'package:flutter/material.dart';
 
 Future<void> mainCommon(Flavor flavor) async {
@@ -22,6 +23,7 @@ void _setupDI(Flavor flavor) {
     scopeName: unauthScope,
     init: (_) {
       AppDI.initDependencies(flavor);
+      dataDI.initDependencies();
       setupNavigationDependencies();
     },
   );

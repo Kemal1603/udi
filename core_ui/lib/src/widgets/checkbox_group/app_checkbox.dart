@@ -19,6 +19,7 @@ class _AppCheckBoxState extends State<AppCheckBox> {
   bool _isChecked = false;
   @override
   Widget build(BuildContext context) {
+    final AppColors appColors = AppColors.of(context);
     return InkWell(
       onTap: () {
         setState(() {
@@ -31,23 +32,26 @@ class _AppCheckBoxState extends State<AppCheckBox> {
         height: 16,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_2),
-          color: _isChecked ? AppColors.of(context).alizarin10 : AppColors.of(context).white,
+          color: _isChecked ? appColors.alizarin10 : appColors.white,
           border: Border.all(
-            color: _isChecked ? AppColors.of(context).alizarin10 : AppColors.of(context).gray,
+            color: _isChecked ? appColors.alizarin10 : appColors.gray,
             width: 1.5,
           ),
         ),
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 100),
           transitionBuilder: (Widget child, Animation<double> animation) {
-            return ScaleTransition(child: child, scale: animation);
+            return ScaleTransition(
+              scale: animation,
+              child: child,
+            );
           },
           child: _isChecked
               ? Center(
                   child: Icon(
                     Icons.check,
                     size: 14,
-                    color: AppColors.of(context).white,
+                    color: appColors.white,
                   ),
                 )
               : null,

@@ -8,8 +8,9 @@ class AppDropDownWidget extends StatefulWidget {
   final List<String> items;
   final bool hasCheckbox;
   final bool withIcons;
-  final double width;
+  final double? width;
   final String? hint;
+  final String? label;
   final bool isAllAsDefault;
   final bool isExpanded;
   final void Function(List<String>?) onChanged;
@@ -17,12 +18,13 @@ class AppDropDownWidget extends StatefulWidget {
   const AppDropDownWidget({
     required this.items,
     required this.onChanged,
-    this.width = 250,
+    this.width,
     this.hint,
+    this.label,
     this.hasCheckbox = false,
     this.withIcons = false,
     this.isAllAsDefault = false,
-    this.isExpanded = false,
+    this.isExpanded = true,
     Key? key,
   }) : super(key: key);
 
@@ -41,6 +43,31 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
   @override
   void initState() {
     super.initState();
+    _onInit();
+  }
+
+  @override
+  void didUpdateWidget(covariant AppDropDownWidget oldWidget) {
+    if (oldWidget.items.length != widget.items.length) {
+      values.clear();
+      selectedItems.clear();
+      _notifiers.clear();
+
+      _onInit();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    _notifiers.forEach((ValueNotifier<bool> notifier) {
+      notifier.dispose();
+    });
+    _checkAllState.dispose();
+    super.dispose();
+  }
+
+  void _onInit() {
     values.addAll(widget.items);
     if (widget.isAllAsDefault) {
       selectedItems.addAll(values);
@@ -142,7 +169,7 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
   void _clearSelection() {
     setState(() {
       selectedItems.clear();
-      for (var notifier in _notifiers) {
+      for (final ValueNotifier<bool> notifier in _notifiers) {
         notifier.value = false;
       }
       _checkAllState.value = _CheckAllState.unchecked;
@@ -152,11 +179,9 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
 
   Widget _getSuffixIcon() {
     if (selectedItems.isNotEmpty) {
-      return Flexible(
-        child: IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: _clearSelection,
-        ),
+      return GestureDetector(
+        onTap: _clearSelection,
+        child: const Icon(Icons.clear),
       );
     } else {
       return const Icon(Icons.keyboard_arrow_down);
@@ -165,7 +190,7 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
 
   DropdownMenuItem<String> _buildSelectAllWidget() {
     return DropdownMenuItem<String>(
-      value: 'cccccc',
+      value: '_buildSelectAllWidget',
       enabled: false,
       child: ValueListenableBuilder<_CheckAllState>(
         valueListenable: _checkAllState,
@@ -227,9 +252,9 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
 
   List<DropdownMenuItem<String>> _buildListWithCheckbox() {
     final List<DropdownMenuItem<String>> items = <DropdownMenuItem<String>>[
-      _buildSelectAllWidget(),
+      // _buildSelectAllWidget(),
     ];
-    for (var item in values) {
+    for (final String item in values) {
       items.add(
         DropdownMenuItem<String>(
           value: item,
@@ -277,33 +302,15 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
                       ),
                       const SizedBox(width: AppDimens.ITEM_SIZE_5),
                       SizedBox(
-                        width: widget.width - AppDimens.ITEM_SIZE_45,
-                        child: Row(
-                          children: <Widget>[
-                            if (widget.withIcons) ...<Widget>[
-                              AppImage(
-                                width: AppDimens.ITEM_SIZE_20,
-                                height: AppDimens.ITEM_SIZE_20,
-                                image: item.contains('Safe')
-                                    ? AppImages.safePageIcon
-                                    : AppImages.cashDrawerSelected,
-                                color: AppColors.of(context).matterhorn,
-                              ),
-                              const SizedBox(width: AppDimens.ITEM_SIZE_6),
-                            ],
-                            SizedBox(
-                              width: widget.withIcons
-                                  ? widget.width - AppDimens.ITEM_SIZE_75
-                                  : widget.width - AppDimens.ITEM_SIZE_45,
-                              child: Text(
-                                item,
-                                style: AppFonts.normal16.copyWith(
-                                  color: AppColors.of(context).matterhorn,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                          ],
+                        width: widget.width != null && widget.width! > 0
+                            ? widget.width! - AppDimens.ITEM_SIZE_45
+                            : null,
+                        child: Text(
+                          item,
+                          style: AppFonts.normal16.copyWith(
+                            color: AppColors.of(context).matterhorn,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
                     ],
@@ -350,111 +357,122 @@ class _AppDropDownWidgetState extends State<AppDropDownWidget> {
         hoverColor: colors.nightBlue5,
         focusColor: colors.transparent,
       ),
-      child: Container(
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-          borderRadius: _isOpen
-              ? const BorderRadius.vertical(
-                  top: Radius.circular(AppDimens.BORDER_RADIUS_4),
-                )
-              : BorderRadius.circular(AppDimens.BORDER_RADIUS_4),
-        ),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButton2<String>(
-            onMenuStateChange: (bool isOpen) {
-              setState(() {
-                _isOpen = isOpen;
-              });
-            },
-            selectedItemBuilder: (_) {
-              return <Widget>[
-                Center(
-                  child: Container(
-                    width: widget.width - AppDimens.ITEM_SIZE_25,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppDimens.PADDING_10,
-                    ),
-                    child: Text(
-                      _getSelectedItemText(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppFonts.normal16.copyWith(
-                        color: colors.matterhorn,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          if (widget.label != null)
+            Text(
+              '${widget.label}',
+              style: AppFonts.bold18,
+            ),
+          const SizedBox(height: 10),
+          Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              borderRadius: _isOpen
+                  ? const BorderRadius.vertical(
+                      top: Radius.circular(AppDimens.BORDER_RADIUS_10),
+                    )
+                  : BorderRadius.circular(AppDimens.BORDER_RADIUS_10),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton2<String>(
+                onMenuStateChange: (bool isOpen) => setState(() => _isOpen = isOpen),
+                selectedItemBuilder: (_) {
+                  return <Widget>[
+                    Center(
+                      child: Container(
+                        width: widget.width != null && widget.width! > 0
+                            ? widget.width! - AppDimens.ITEM_SIZE_25
+                            : null,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppDimens.PADDING_10,
+                        ),
+                        child: Text(
+                          _getSelectedItemText(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppFonts.normal16.copyWith(
+                            color: colors.white,
+                          ),
+                        ),
                       ),
+                    ),
+                  ];
+                },
+                onChanged: _onChanged,
+                items: widget.hasCheckbox ? _buildListWithCheckbox() : _buildListWithoutCheckbox(),
+                hint: Container(
+                  width: widget.width != null && widget.width! > 0
+                      ? widget.width! - AppDimens.ITEM_SIZE_25
+                      : null,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppDimens.PADDING_10,
+                  ),
+                  child: Text(
+                    _getSelectedItemText(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppFonts.normal16.copyWith(
+                      color: colors.matterhorn,
                     ),
                   ),
                 ),
-              ];
-            },
-            onChanged: (String? value) {
-              _onChanged(value);
-            },
-            items: widget.hasCheckbox ? _buildListWithCheckbox() : _buildListWithoutCheckbox(),
-            hint: Container(
-              width: widget.width - AppDimens.ITEM_SIZE_25,
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimens.PADDING_10,
-              ),
-              child: Text(
-                _getSelectedItemText(),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
                 style: AppFonts.normal16.copyWith(
                   color: colors.matterhorn,
                 ),
-              ),
-            ),
-            style: AppFonts.normal16.copyWith(
-              color: colors.matterhorn,
-            ),
-            isExpanded: widget.isExpanded,
-            buttonStyleData: ButtonStyleData(
-              height: AppDimens.ITEM_SIZE_40,
-              width: widget.width,
-              padding: EdgeInsets.zero,
-              decoration: BoxDecoration(
-                border: _isOpen
-                    ? Border(
-                        bottom: BorderSide(color: colors.alizarin, width: 1),
-                      )
-                    : null,
-                color: _isOpen ? colors.alizarin10 : colors.whiteSmoke,
-              ),
-              elevation: 0,
-            ),
-            iconStyleData: IconStyleData(
-              iconSize: AppDimens.ITEM_SIZE_20,
-              openMenuIcon: Icon(
-                Icons.keyboard_arrow_up,
-                color: colors.alizarin,
-              ),
-              icon: _getSuffixIcon(),
-            ),
-            dropdownStyleData: DropdownStyleData(
-              width: widget.width,
-              padding: EdgeInsets.zero,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.vertical(
-                  bottom: Radius.circular(AppDimens.BORDER_RADIUS_4),
-                ),
-                color: colors.whiteSmoke,
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                    color: colors.matterhorn.withOpacity(0.5),
-                    blurRadius: 2,
-                    offset: const Offset(2, 2), // Shadow position
+                isExpanded: widget.isExpanded,
+                buttonStyleData: ButtonStyleData(
+                  height: AppDimens.ITEM_SIZE_40,
+                  width: widget.width,
+                  padding: const EdgeInsets.only(right: AppDimens.PADDING_10),
+                  decoration: BoxDecoration(
+                    border: _isOpen
+                        ? Border(
+                            bottom: BorderSide(color: colors.alizarin),
+                          )
+                        : null,
+                    color: _isOpen
+                        ? AppColors.of(context).darkGray
+                        : AppColors.of(context).gainsboroLight,
                   ),
-                ],
+                  elevation: 0,
+                ),
+                iconStyleData: IconStyleData(
+                  iconSize: AppDimens.ITEM_SIZE_20,
+                  openMenuIcon: Icon(
+                    Icons.keyboard_arrow_up,
+                    color: colors.alizarin,
+                  ),
+                  icon: _getSuffixIcon(),
+                ),
+                dropdownStyleData: DropdownStyleData(
+                  width: widget.width,
+                  maxHeight: AppDimens.ITEM_SIZE_325,
+                  padding: EdgeInsets.zero,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.vertical(
+                      bottom: Radius.circular(AppDimens.BORDER_RADIUS_4),
+                    ),
+                    color: colors.whiteSmoke,
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: colors.matterhorn.withOpacity(0.5),
+                        blurRadius: 2,
+                        offset: const Offset(2, 2), // Shadow position
+                      ),
+                    ],
+                  ),
+                  elevation: 0,
+                ),
+                menuItemStyleData: const MenuItemStyleData(
+                  height: AppDimens.ITEM_SIZE_45,
+                  padding: EdgeInsets.zero,
+                ),
               ),
-              elevation: 0,
-              offset: const Offset(0, 0),
-            ),
-            menuItemStyleData: const MenuItemStyleData(
-              height: AppDimens.ITEM_SIZE_45,
-              padding: EdgeInsets.zero,
             ),
           ),
-        ),
+        ],
       ),
     );
   }

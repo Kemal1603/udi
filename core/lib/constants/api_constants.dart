@@ -5,4 +5,5 @@ class ApiConstants {
   static const String generation = '/generation';
   static const String bodyType = '/body_type';
   static const String advert = '/advert';
+  static const String country = '/country';
 }
