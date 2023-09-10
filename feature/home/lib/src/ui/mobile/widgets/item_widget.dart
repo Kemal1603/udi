@@ -1,77 +1,66 @@
 import 'package:core_ui/core_ui.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 import 'car_image.dart';
 
 class ItemWidget extends StatelessWidget {
+  final AdvertModel advertItem;
+
+  const ItemWidget({
+    required this.advertItem,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_20),
       child: Column(
         children: <Widget>[
-          const Row(
-            children: [
+          Row(
+            children: <Widget>[
               Text(
-                "Car Name",
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                ),
+                '${advertItem.brandName} ${advertItem.modelName}, ${advertItem.generationName}',
+                style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
               ),
             ],
           ),
           const SizedBox(height: AppDimens.PADDING_15),
           SizedBox(
-            width: 335,
-            height: 200,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: const <Widget>[
-                CarImage(imageUrl: 'https://picsum.photos/250?image=9'),
-                CarImage(imageUrl: 'https://picsum.photos/250?image=9'),
-                CarImage(imageUrl: 'https://picsum.photos/250?image=9'),
-              ],
+            width: MediaQuery.of(context).size.width - 40,
+            height: MediaQuery.of(context).size.aspectRatio * 500,
+            child: PageView(
+              physics: const PageScrollPhysics(),
+              children:
+                  advertItem.imageUrls.map((String image) => CarImage(imageUrl: image)).toList(),
             ),
           ),
           const SizedBox(height: AppDimens.PADDING_15),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Flexible(
                 child: Text(
-                  "Text 1",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  advertItem.price.toString(),
+                  style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
                 ),
               ),
               Flexible(
                 child: Text(
-                  "Text 2",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  advertItem.dateOfIssue,
+                  style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
                 ),
               ),
               Flexible(
                 child: Text(
-                  "Text 3",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  advertItem.millage.toString(),
+                  style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
                 ),
               ),
               Flexible(
                 child: Text(
-                  "Text 4",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  advertItem.countryCode,
+                  style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
                 ),
               ),
             ],

@@ -9,7 +9,7 @@ abstract class AppColors {
   }
 
   factory AppColors.withOutContext() {
-    return LightColors();
+    return const LightColors();
   }
 
   // static AppColors ofGlobalContext() {
@@ -18,6 +18,11 @@ abstract class AppColors {
   //   return AppColors.of(context);
   // }
 
+  Color get textColor;
+
+  Color get iconsColor;
+
+  /// OLD
   Color get white;
 
   Color get black;
@@ -95,104 +100,110 @@ class LightColors extends AppColors {
   const LightColors();
 
   @override
+  Color get textColor => const Color(0xff000000);
+  Color get iconsColor => const Color(0xff000000);
+
+  /// OLD
+
+  @override
   Color get white => Colors.white;
 
   @override
-  Color get flashWhite => Color(0xfff2f2f2);
+  Color get flashWhite => const Color(0xfff2f2f2);
 
   @override
-  Color get pigment => Color(0xff3126A6);
+  Color get pigment => const Color(0xff3126A6);
 
   @override
-  Color get black => Color(0xff000000);
+  Color get black => const Color(0xff000000);
 
   @override
-  Color get matterhorn => Color(0xff545454);
+  Color get matterhorn => const Color(0xff545454);
 
   @override
-  Color get alizarin => Color(0xff3F31EB);
+  Color get alizarin => const Color(0xff3F31EB);
 
   @override
-  Color get alizarin5 => Color(0xff3F31EB).withOpacity(0.05);
+  Color get alizarin5 => const Color(0xff3F31EB).withOpacity(0.05);
 
   @override
   Color get alizarin10 => const Color.fromRGBO(0, 176, 233, 1);
 
   @override
-  Color get alizarin50 => Color(0xff3F31EB).withOpacity(0.5);
+  Color get alizarin50 => const Color(0xff3F31EB).withOpacity(0.5);
 
   @override
-  Color get alizarin80 => Color(0xff3F31EB).withOpacity(0.8);
+  Color get alizarin80 => const Color(0xff3F31EB).withOpacity(0.8);
 
   @override
-  Color get alizarinHovered => Color(0xff1f2eaf);
+  Color get alizarinHovered => const Color(0xff1f2eaf);
 
   @override
-  Color get whiteNeutral => Color(0xffFBFBFB);
+  Color get whiteNeutral => const Color(0xffFBFBFB);
 
   @override
   Color get transparent => Colors.transparent;
 
   @override
-  Color get snow => Color(0xffF9F9F9);
+  Color get snow => const Color(0xffF9F9F9);
 
   @override
-  Color get gray => Color(0xff939393);
+  Color get gray => const Color(0xff939393);
 
   @override
-  Color get gainsboroLight => Color(0xffDFDFDF);
+  Color get gainsboroLight => const Color(0xffDFDFDF);
 
   @override
-  Color get red => Color(0xffD83030);
+  Color get red => const Color(0xffD83030);
 
   @override
-  Color get melon => Color(0xfffbb9ba);
+  Color get melon => const Color(0xfffbb9ba);
 
   @override
-  Color get green => Color(0xff138947);
+  Color get green => const Color(0xff138947);
 
   @override
-  Color get blue => Color(0xff204d9c);
+  Color get blue => const Color(0xff204d9c);
 
   @override
-  Color get yellow => Color(0xffF99D33);
+  Color get yellow => const Color(0xffF99D33);
 
   @override
-  Color get textGrey => Color(0xff3b3b3b);
+  Color get textGrey => const Color(0xff3b3b3b);
 
   @override
-  Color get philippineSilver => Color(0xffB6B6B6);
+  Color get philippineSilver => const Color(0xffB6B6B6);
 
   @override
-  Color get whiteSmoke => Color(0xffF6F6F6);
+  Color get whiteSmoke => const Color(0xffF6F6F6);
 
   @override
-  Color get nightBlue5 => Color(0xff4355FA).withOpacity(0.05);
+  Color get nightBlue5 => const Color(0xff4355FA).withOpacity(0.05);
 
   @override
-  Color get tableGray => Color(0xffe6e6e6);
+  Color get tableGray => const Color(0xffe6e6e6);
 
   @override
-  Color get skyBlue => Color(0xfff6f6fd);
+  Color get skyBlue => const Color(0xfff6f6fd);
 
   @override
-  Color get zambezi => Color(0xff585858);
+  Color get zambezi => const Color(0xff585858);
 
   @override
-  Color get darkGray => Color(0xffA9A9A9);
+  Color get darkGray => const Color(0xffA9A9A9);
 
   @override
-  Color get whiteSmokeLight => Color(0xffF4F4F4);
+  Color get whiteSmokeLight => const Color(0xffF4F4F4);
 
   @override
-  Color get ghostWhite => Color(0xffF7F7FE);
+  Color get ghostWhite => const Color(0xffF7F7FE);
 
   @override
-  Color get lavender => Color(0xffdfeefe);
+  Color get lavender => const Color(0xffdfeefe);
 
   @override
-  Color get brandeisBlue => Color(0xff0060F7);
+  Color get brandeisBlue => const Color(0xff0060F7);
 
   @override
-  Color get mistyRose => Color(0xffECEAFD);
+  Color get mistyRose => const Color(0xffECEAFD);
 }

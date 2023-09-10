@@ -1,5 +1,5 @@
-name: home
-description: Home feature
+name: filter
+description: Filter feature
 version: 0.0.1
 publish_to: none
 
@@ -16,8 +16,6 @@ dependencies:
     path: ../../domain
   core_ui:
     path: ../../core_ui
-  filter:
-    path: ../filter
 
 
 dev_dependencies:

@@ -12,7 +12,9 @@ Future<void> mainCommon(Flavor flavor) async {
     EasyLocalization(
       supportedLocales: AppLocalization.supportedLocales,
       path: AppLocalization.langsFolderPath,
+      useOnlyLangCode: true,
       fallbackLocale: AppLocalization.fallbackLocale,
+      useFallbackTranslations: true,
       child: const App(),
     ),
   );
@@ -45,11 +47,12 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return LocalizationWidget(
       child: MaterialApp.router(
-        locale: context.locale,
-        localizationsDelegates: [
-          ...context.localizationDelegates,
-        ],
+        localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
+        localeResolutionCallback: (Locale? locale, Iterable<Locale> supported) {
+          final Locale locale = context.locale;
+          return locale;
+        },
         routerDelegate: appLocator.get<AppRouter>().delegate(),
         theme: lightTheme,
         routeInformationParser: appLocator.get<AppRouter>().defaultRouteParser(),

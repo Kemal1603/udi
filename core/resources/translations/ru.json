@@ -1,0 +1,108 @@
+{
+  "common" : {
+    "from": "от",
+    "to": "до",
+    "apply": "Применить"
+  },
+
+  "filter": {
+    "reset": "Сбросить",
+    "filter": "Фильтр",
+    "country": "Страна",
+    "city": "Город",
+    "price": "Цена",
+    "stateCarType": {
+      "all": "Все",
+      "used": "C пробегом",
+      "new": "Новые"
+    },
+    "brand": "Марка",
+    "model": "Модель",
+    "generation": "Поколение",
+    "year": "Год выпуска",
+    "mileage": "Пробег",
+    "gearBoxType": {
+      "title": "Тип коробки передач",
+      "auto": "Автомат",
+      "mechanic": "Механика",
+      "robot": "Робот",
+      "variator": "Вариатор"
+    },
+    "engineType": {
+      "title": "Тип двигателя",
+      "petrol": "Бензин",
+      "diesel": "Дизель",
+      "gas": "Газ",
+      "hybrid": "Гибрид",
+      "electro": "Электро"
+    },
+    "enginePower": "Мощность двигателя",
+    "engineVolume": "Объем двигателя",
+    "driveType": {
+      "title": "Тип привода",
+      "front": "Передний",
+      "rear": "Задний",
+      "full": "Полный"
+    },
+    "wheelType": {
+      "title": "Руль",
+      "all": "Все",
+      "left": "Левый",
+      "right": "Правый"
+    },
+    "bodyType": {
+      "title": "Тип кузова",
+      "sedan": "Седан",
+      "hatchback": "Хэтчбек",
+      "universal": "Универсал",
+      "coupe": "Купе",
+      "cabriolet": "Кабриолет",
+      "limousine": "Лимузин",
+      "pickup": "Пикап",
+      "minivan": "Минивэн",
+      "suv": "Внедорожник",
+      "crossover": "Кроссовер",
+      "van": "Фургон",
+      "truck": "Грузовик",
+      "bus": "Автобус",
+      "microbus": "Микроавтобус",
+      "other": "Другое"
+    },
+    "condition": {
+      "tittle": "Состояние",
+      "all": "Все",
+      "withOutCrashed": "Короме аварийных",
+      "crashed": "Аварийные"
+    },
+    "registration": {
+      "tittle": "Регистрация",
+      "all": "Все",
+        "withOutRegistration": "Короме не зарегистрированных",
+        "registration": "Зарегистрированные" ,
+
+      "withOutCustoms": "Короме растаможенных",
+      "customs": "Растаможенные"
+    },
+    "exchange": {
+      "title": "Обмен",
+      "all": "Все",
+      "withOutExchange": "Короме обмена",
+      "exchange": "Обмен"
+    },
+    "sellerType": {
+      "title": "Тип продавца",
+      "all": "Все",
+      "owner": "Собственник",
+      "dealer": "Дилер"
+    },
+    "sorting": {
+      "title": "Сортировка",
+      "priceUp": "Цена по возрастанию",
+      "priceDown": "Цена по убыванию",
+      "yearUp": "Год по возрастанию",
+      "yearDown": "Год по убыванию",
+      "mileageUp": "Пробег по возрастанию",
+      "mileageDown": "Пробег по убыванию"
+    }
+  }
+}

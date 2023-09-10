@@ -11,17 +11,10 @@ class CarImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 335,
-      height: 200,
-      padding: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_8),
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.cover,
-        ),
-      ),
+    return AppImage(
+      image: imageUrl,
+      fit: BoxFit.cover,
+      borderRadius: BorderRadius.circular(8),
     );
   }
 }

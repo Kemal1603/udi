@@ -5,10 +5,13 @@ import '../../../core_ui.dart';
 class ToggleGroupWidget extends StatelessWidget {
   final String title;
   final List<String> options;
+  final Function(String selectedItem) onOptionChanged;
+
   const ToggleGroupWidget({
     super.key,
     required this.title,
     required this.options,
+    required this.onOptionChanged,
   });
 
   @override
@@ -19,7 +22,7 @@ class ToggleGroupWidget extends StatelessWidget {
         Text(title, style: AppFonts.bold18),
         const SizedBox(height: AppDimens.PADDING_10),
         ToggleButtonRow(
-          onOptionChanged: (String selectedItem) {},
+          onOptionChanged: onOptionChanged,
           options: options,
         ),
       ],
