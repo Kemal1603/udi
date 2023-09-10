@@ -10,5 +10,6 @@ class BodyTypeModel extends BaseItemModel with _$BodyTypeModel {
     required String name,
     required int id,
     required int familyId,
+    required int advertCount,
   }) = _BodyTypeModel;
 }

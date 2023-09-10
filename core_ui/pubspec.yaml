@@ -19,6 +19,7 @@ dependencies:
   just_the_tooltip: ^0.0.12
   flutter_svg: ^2.0.7
   responsive_builder: ^0.7.0
+  pull_to_refresh: ^2.0.0
 
   core:
     path: ../core

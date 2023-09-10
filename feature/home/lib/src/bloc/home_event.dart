@@ -4,14 +4,12 @@ abstract class HomeEvent {}
 
 class InitEvent extends HomeEvent {}
 
-class FetchModelsEvent extends HomeEvent {
-  final List<int> brandsIDs;
+class RefreshEvent extends HomeEvent {}
 
-  FetchModelsEvent({required this.brandsIDs});
-}
+class LoadMoreEvent extends HomeEvent {}
 
-class FetchGenerationsEvent extends HomeEvent {
-  final List<int> modelsIDs;
+class FilterEvent extends HomeEvent {
+  final FilterModel filter;
 
-  FetchGenerationsEvent({required this.modelsIDs});
+  FilterEvent({required this.filter});
 }

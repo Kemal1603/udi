@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+export 'package:pull_to_refresh/pull_to_refresh.dart';
+
 export 'src/widgets/widgets.dart';
 
 part 'src/design/app_colors.dart';

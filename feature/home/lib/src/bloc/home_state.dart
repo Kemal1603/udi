@@ -2,36 +2,36 @@ part of 'home_bloc.dart';
 
 class HomeState extends Equatable {
   final bool isLoading;
-  final List<BrandModel> brands;
-  final List<ModelModel> models;
-  final List<GenerationModel> generations;
+  final int page;
+  final FilterModel filter;
+  final List<AdvertModel> adverts;
 
   const HomeState({
     this.isLoading = false,
-    this.brands = const <BrandModel>[],
-    this.models = const <ModelModel>[],
-    this.generations = const <GenerationModel>[],
+    this.page = 1,
+    this.filter = const FilterModel(),
+    this.adverts = const <AdvertModel>[],
   });
 
   HomeState copyWith({
     bool? isLoading,
-    List<BrandModel>? brands,
-    List<ModelModel>? models,
-    List<GenerationModel>? generations,
+    int? page,
+    FilterModel? filter,
+    List<AdvertModel>? adverts,
   }) {
     return HomeState(
       isLoading: isLoading ?? this.isLoading,
-      brands: brands ?? this.brands,
-      models: models ?? this.models,
-      generations: generations ?? this.generations,
+      filter: filter ?? this.filter,
+      page: page ?? this.page,
+      adverts: adverts ?? this.adverts,
     );
   }
 
   @override
   List<Object?> get props => <Object?>[
         isLoading,
-        brands,
-        models,
-        generations,
+        page,
+        filter,
+        adverts,
       ];
 }

@@ -26,6 +26,14 @@ class AdvertEntity with _$AdvertEntity {
     @Default(0) @JsonKey(name: 'id') int id,
     @Default('') @JsonKey(name: 'created') String created,
     @Default('') @JsonKey(name: 'modified') String modified,
+    @Default('') @JsonKey(name: 'family_name') String familyName,
+    @Default('') @JsonKey(name: 'brand_name') String brandName,
+    @Default('') @JsonKey(name: 'model_name') String modelName,
+    @Default('') @JsonKey(name: 'generation_name') String generationName,
+    @Default('') @JsonKey(name: 'body_type_name') String bodyTypeName,
+    @Default('') @JsonKey(name: 'fuel_name') String fuelName,
+    @Default('') @JsonKey(name: 'gear_name') String gearName,
+    @Default('') @JsonKey(name: 'country_code') String countryCode,
   }) = _AdvertEntity;
 
   factory AdvertEntity.fromJson(Map<String, dynamic> json) => _$AdvertEntityFromJson(json);

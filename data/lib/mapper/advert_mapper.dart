@@ -24,6 +24,14 @@ abstract class AdvertMapper {
       created: model.created,
       modified: model.modified,
       brandId: model.brandId,
+      bodyTypeName: model.bodyTypeName,
+      brandName: model.brandName,
+      countryCode: model.countryCode,
+      familyName: model.familyName,
+      fuelName: model.fuelName,
+      gearName: model.gearName,
+      generationName: model.generationName,
+      modelName: model.modelName,
     );
   }
 
@@ -49,6 +57,14 @@ abstract class AdvertMapper {
       created: entity.created,
       modified: entity.modified,
       brandId: entity.brandId,
+      bodyTypeName: entity.bodyTypeName,
+      brandName: entity.brandName,
+      countryCode: entity.countryCode,
+      familyName: entity.familyName,
+      fuelName: entity.fuelName,
+      gearName: entity.gearName,
+      generationName: entity.generationName,
+      modelName: entity.modelName,
     );
   }
 }

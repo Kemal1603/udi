@@ -62,5 +62,14 @@ class DataDI {
     appLocator.registerLazySingleton<FetchCountriesUseCase>(
       () => FetchCountriesUseCase(filtersRepository: appLocator<FiltersRepository>()),
     );
+    appLocator.registerLazySingleton<FetchFuelTypeUseCase>(
+      () => FetchFuelTypeUseCase(filtersRepository: appLocator<FiltersRepository>()),
+    );
+    appLocator.registerLazySingleton<FetchGearTypeUseCase>(
+      () => FetchGearTypeUseCase(filtersRepository: appLocator<FiltersRepository>()),
+    );
+    appLocator.registerLazySingleton<FetchFamilyUseCase>(
+      () => FetchFamilyUseCase(filtersRepository: appLocator<FiltersRepository>()),
+    );
   }
 }

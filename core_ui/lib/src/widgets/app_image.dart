@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,7 +15,7 @@ class AppImage extends StatelessWidget {
   final double? width;
   final String image;
   final TextStyle? textStyle;
-  final BorderRadius? borderRadius;
+  final BorderRadius borderRadius;
   final BoxFit? fit;
   final Color? color;
 
@@ -30,12 +31,12 @@ class AppImage extends StatelessWidget {
   }) : super(key: key);
 
   ImageType _getImageType(String fileName) {
-    // if (fileName.isNetworkImage()) {
-    //   return ImageType.network;
-    // }
-    // if (fileName.isSvg()) {
-    //   return ImageType.svg;
-    // }
+    if (fileName.isNetworkImage()) {
+      return ImageType.network;
+    }
+    if (fileName.isSvg()) {
+      return ImageType.svg;
+    }
     return ImageType.other;
   }
 
@@ -70,7 +71,7 @@ class AppImage extends StatelessWidget {
         return ClipRRect(
           borderRadius: borderRadius,
           child: CachedNetworkImage(
-            fadeInDuration: Duration(milliseconds: 300),
+            fadeInDuration: const Duration(milliseconds: 300),
             imageUrl: image,
             placeholder: (_, __) => Container(color: AppColors.of(context).gray),
             errorWidget: (_, __, ___) => Container(color: AppColors.of(context).gray),

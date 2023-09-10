@@ -25,5 +25,13 @@ class AdvertModel with _$AdvertModel {
     required int id,
     required String created,
     required String modified,
+    required String familyName,
+    required String brandName,
+    required String modelName,
+    required String generationName,
+    required String bodyTypeName,
+    required String fuelName,
+    required String gearName,
+    required String countryCode,
   }) = _AdvertModel;
 }

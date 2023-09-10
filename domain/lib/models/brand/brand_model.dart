@@ -9,5 +9,6 @@ class BrandModel extends BaseItemModel with _$BrandModel {
   factory BrandModel({
     required String name,
     required int id,
+    required int advertCount,
   }) = _BrandModel;
 }

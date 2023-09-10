@@ -79,4 +79,31 @@ class FiltersRepositoryImpl implements FiltersRepository {
 
     return country.map(CountryMapper.toModel).toList();
   }
+
+  @override
+  Future<List<FamilyModel>> fetchFamilies() async {
+    final List<FamilyEntity> families = await safeRequest(
+      _apiProvider.fetchFamily,
+    );
+
+    return families.map(FamilyMapper.toModel).toList();
+  }
+
+  @override
+  Future<List<FuelTypeModel>> fetchFuelTypes() async {
+    final List<FuelTypeEntity> fuelTypes = await safeRequest(
+      _apiProvider.fetchFuelTypes,
+    );
+
+    return fuelTypes.map(FuelTypeMapper.toModel).toList();
+  }
+
+  @override
+  Future<List<GearTypeModel>> fetchGearTypes() async {
+    final List<GearTypeEntity> gearTypes = await safeRequest(
+      _apiProvider.fetchGearTypes,
+    );
+
+    return gearTypes.map(GearTypeMapper.toModel).toList();
+  }
 }
