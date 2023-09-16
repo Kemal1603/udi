@@ -21,7 +21,7 @@ class AppButton extends StatefulWidget {
     super.key,
     this.color,
     this.radius = 8,
-    this.verticalPadding = 0,
+    this.verticalPadding = 10,
     this.text,
     this.childWidget,
     this.borderColor,
