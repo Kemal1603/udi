@@ -4,7 +4,6 @@
     "to": "до",
     "apply": "Применить"
   },
-
   "filter": {
     "reset": "Сбросить",
     "filter": "Фильтр",
@@ -104,5 +103,33 @@
       "mileageUp": "Пробег по возрастанию",
       "mileageDown": "Пробег по убыванию"
     }
+  },
+  "advertDetails": {
+    "characteristics": "Характеристики",
+    "mileage": "Пробег",
+    "gearBoxType": "Коробка передач",
+    "engineType": "Тип двигателя",
+    "enginePower": "Мощность двигателя",
+    "engineVolume": "Объем двигателя",
+    "driveType": "Тип привода",
+    "wheelType": "Руль",
+    "bodyType": "Тип кузова",
+    "condition": "Состояние",
+    "registration": "Регистрация",
+    "exchange": "Обмен",
+    "description": "Описание",
+    "sellerType": "Тип продавца",
+    "price": "Цена",
+    "year": "Год выпуска",
+    "brand": "Марка",
+    "model": "Модель",
+    "generation": "Поколение",
+    "country": "Страна",
+    "city": "Город",
+    "checkByVIN": "Проверить по VIN",
+    "orderCheckCar": "Заказать проверку авто",
+    "contactWithSeller": "Связаться с продавцом",
+    "reserveCar": "Забронировать авто",
+    "orderBuyAndDelivery": "Оформить покупку и доставку"
   }
 }

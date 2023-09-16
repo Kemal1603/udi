@@ -73,7 +73,11 @@ class AppImage extends StatelessWidget {
           child: CachedNetworkImage(
             fadeInDuration: const Duration(milliseconds: 300),
             imageUrl: image,
-            placeholder: (_, __) => Container(color: AppColors.of(context).gray),
+            placeholder: (_, __) => Container(
+                color: AppColors.of(context).whiteSmoke,
+                child: const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                )),
             errorWidget: (_, __, ___) => Container(color: AppColors.of(context).gray),
             fit: fit,
             width: width,

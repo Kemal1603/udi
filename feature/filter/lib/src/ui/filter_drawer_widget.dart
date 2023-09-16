@@ -261,7 +261,7 @@ class FilterDrawerWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(height: AppDimens.PADDING_25),
-            Text('filter.sorting.title', style: AppFonts.bold18),
+            Text('filter.sorting.title'.tr(), style: AppFonts.bold18),
             RadioButtonGroup(
               items: <String>[
                 'filter.sorting.priceUp'.tr(),

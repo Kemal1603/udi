@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
     return BlocProvider<HomeBloc>(
       create: (BuildContext context) => HomeBloc(
         fetchAdvertsUseCase: appLocator<FetchAdvertUseCase>(),
+        appRouter: appLocator<AppRouter>(),
       ),
       child: BaseScreen(
         mobileBuilder: (_) => HomeFormMobile(),

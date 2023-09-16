@@ -4,6 +4,8 @@ part 'advert_model.freezed.dart';
 
 @freezed
 class AdvertModel with _$AdvertModel {
+  const AdvertModel._();
+
   const factory AdvertModel({
     required int familyId,
     required int brandId,
@@ -34,4 +36,35 @@ class AdvertModel with _$AdvertModel {
     required String gearName,
     required String countryCode,
   }) = _AdvertModel;
+
+  factory AdvertModel.empty() => const AdvertModel(
+        familyId: 0,
+        brandId: 0,
+        modelId: 0,
+        generationId: 0,
+        bodyTypeId: 0,
+        modificationId: 0,
+        sourceId: 0,
+        sellerId: 0,
+        sourceUrl: '',
+        imageUrls: [],
+        millage: 0,
+        gearId: 0,
+        dateOfIssue: '',
+        fuelId: 0,
+        locationId: 0,
+        motorPower: '',
+        price: 0,
+        id: 0,
+        created: '',
+        modified: '',
+        familyName: '',
+        brandName: '',
+        modelName: '',
+        generationName: '',
+        bodyTypeName: '',
+        fuelName: '',
+        gearName: '',
+        countryCode: '',
+      );
 }
