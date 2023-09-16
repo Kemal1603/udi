@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../core_ui.dart';
-import 'expanded_button.dart';
 
 class ToggleButtonRow extends StatefulWidget {
   final List<String> options;
@@ -29,22 +28,29 @@ class _ToggleButtonRowState extends State<ToggleButtonRow> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.of(context).gainsboroLight,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: <Widget>[
-          for (int i = 0; i < widget.options.length; i++)
-            ExpandedButton(
-              index: i,
-              isSelected: _selectedIndex == i,
-              onTap: _handleButtonTap,
-              buttonText: widget.options[i],
+    final AppColors appColors = AppColors.of(context);
+    return Wrap(
+      spacing: 13,
+      children: <Widget>[
+        for (int i = 0; i < widget.options.length; i++)
+          GestureDetector(
+            onTap: () => _handleButtonTap(i),
+            child: Chip(
+              label: Text(
+                widget.options[i],
+                style: AppFonts.normal13.copyWith(
+                  color: _selectedIndex == i ? appColors.white : appColors.black,
+                ),
+              ),
+              labelStyle: const TextStyle(fontSize: 12),
+              backgroundColor:
+                  _selectedIndex == i ? appColors.brandeisBlue : appColors.gainsboroLight,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_10),
+              ),
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 }
