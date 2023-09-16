@@ -5,10 +5,6 @@ import 'package:flutter/material.dart';
 import '../../bloc/advert_details_bloc.dart';
 
 class AdvertDetailsMobile extends StatelessWidget {
-  AdvertDetailsMobile();
-
-  final RefreshController _refreshController = RefreshController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +38,6 @@ class AdvertDetailsMobile extends StatelessWidget {
           }
           return ListView(
             padding: const EdgeInsets.symmetric(
-              horizontal: AppDimens.PADDING_20,
               vertical: AppDimens.PADDING_15,
             ),
             children: <Widget>[
@@ -51,10 +46,139 @@ class AdvertDetailsMobile extends StatelessWidget {
                 height: MediaQuery.of(context).size.aspectRatio * 500,
                 imageUrls: state.advert.imageUrls,
               ),
+              const SizedBox(
+                height: AppDimens.PADDING_10,
+              ),
+              const AppDivider(),
+              const SizedBox(
+                height: AppDimens.PADDING_10,
+              ),
+              const SizedBox(
+                height: AppDimens.PADDING_10,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_10),
+                child: Text(
+                  'advertDetails.characteristics'.tr(),
+                  style: AppFonts.normal16.copyWith(color: AppColors.of(context).textColor),
+                ),
+              ),
+              const SizedBox(
+                height: AppDimens.PADDING_10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    if (state.advert.dateOfIssue.isNotEmpty) ...<Widget>[
+                      Text(
+                        '${'advertDetails.year'.tr()}: ${state.advert.dateOfIssue}',
+                        style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
+                        softWrap: true,
+                      ),
+                    ],
+                    if (state.advert.bodyTypeName.isNotEmpty) ...<Widget>[
+                      Text(
+                        '${'advertDetails.bodyType'.tr()}: ${state.advert.bodyTypeName}',
+                        style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
+                        softWrap: true,
+                      ),
+                    ],
+                    if (state.advert.fuelName.isNotEmpty) ...<Widget>[
+                      Text(
+                        '${'advertDetails.engineType'.tr()}: ${state.advert.fuelName}',
+                        style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
+                        softWrap: true,
+                      ),
+                    ],
+                    if (state.advert.motorPower.isNotEmpty) ...<Widget>[
+                      Text(
+                        '${'advertDetails.enginePower'.tr()}: ${state.advert.motorPower} л.с.',
+                        style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
+                        softWrap: true,
+                      ),
+                    ],
+                    if (state.advert.gearName.isNotEmpty) ...<Widget>[
+                      Text(
+                        '${'advertDetails.gearBoxType'.tr()}: ${state.advert.gearName}',
+                        style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
+                        softWrap: true,
+                      ),
+                    ],
+                    Text(
+                      '${'advertDetails.mileage'.tr()}: ${state.advert.millage} км',
+                      style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
+                      softWrap: true,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: AppDimens.PADDING_10,
+              ),
+              const AppDivider(),
+              const SizedBox(
+                height: AppDimens.PADDING_10,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_10),
+                child: Text(
+                  'advertDetails.description'.tr(),
+                  style: AppFonts.normal16.copyWith(color: AppColors.of(context).textColor),
+                ),
+              ),
+              const SizedBox(
+                height: AppDimens.PADDING_10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_20),
+                child: Text(
+                  'state.advert.description',
+                  style: AppFonts.normal13.copyWith(color: AppColors.of(context).textColor),
+                  softWrap: true,
+                ),
+              ),
+              const SizedBox(
+                height: AppDimens.PADDING_25,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_20),
+                child: Column(
+                  children: <Widget>[
+                    AppButton(
+                      text: 'advertDetails.checkByVIN'.tr(),
+                    ),
+                    const SizedBox(
+                      height: AppDimens.PADDING_10,
+                    ),
+                    AppButton(
+                      text: 'advertDetails.orderCheckCar'.tr(),
+                    ),
+                    const SizedBox(
+                      height: AppDimens.PADDING_10,
+                    ),
+                    AppButton(
+                      text: 'advertDetails.contactWithSeller'.tr(),
+                    ),
+                    const SizedBox(
+                      height: AppDimens.PADDING_10,
+                    ),
+                    AppButton(
+                      text: 'advertDetails.reserveCar'.tr(),
+                    ),
+                    const SizedBox(
+                      height: AppDimens.PADDING_10,
+                    ),
+                    AppButton(
+                      text: 'advertDetails.orderBuyAndDelivery'.tr(),
+                    ),
+                  ],
+                ),
+              )
             ],
           );
         },
       ),
     );
   }
-}
