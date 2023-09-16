@@ -24,8 +24,12 @@ class BaseScreen extends StatelessWidget {
             watch: 250,
           ),
           mobile: mobileBuilder,
-          tablet: tabletBuilder != null ? (BuildContext context) => tabletBuilder!(context) : mobileBuilder,
-          desktop: desktopBuilder != null ? (BuildContext context) => desktopBuilder!(context) : mobileBuilder,
+          tablet: tabletBuilder != null
+              ? (BuildContext context) => tabletBuilder!(context)
+              : mobileBuilder,
+          desktop: desktopBuilder != null
+              ? (BuildContext context) => desktopBuilder!(context)
+              : mobileBuilder,
         ),
       ),
     );

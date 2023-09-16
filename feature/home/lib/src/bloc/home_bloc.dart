@@ -5,17 +5,20 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  final AppRouter _appRouter;
   final FetchAdvertUseCase _fetchAdvertsUseCase;
 
   HomeBloc({
     required FetchAdvertUseCase fetchAdvertsUseCase,
+    required AppRouter appRouter,
   })  : _fetchAdvertsUseCase = fetchAdvertsUseCase,
+        _appRouter = appRouter,
         super(const HomeState()) {
     on<InitEvent>(_onInit);
-
     on<RefreshEvent>(_onRefreshEvent);
     on<LoadMoreEvent>(_onLoadMoreEvent);
     on<FilterEvent>(_onFilterEvent);
+    on<OpenAdvertEvent>(_onOpenAdvertEvent);
 
     add(InitEvent());
   }
@@ -44,5 +47,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     return _fetchAdvertsUseCase.execute(
       state.filter.toAdvertRequest(page: state.page),
     );
+  }
+
+  Future<void> _onOpenAdvertEvent(OpenAdvertEvent event, Emitter<HomeState> emit) async {
+    await _appRouter.push(AdvertDetailsRoute(advert: event.advert));
   }
 }

@@ -11,10 +11,13 @@ class CarImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppImage(
-      image: imageUrl,
-      fit: BoxFit.cover,
-      borderRadius: BorderRadius.circular(8),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_10),
+      child: AppImage(
+        image: imageUrl,
+        fit: BoxFit.cover,
+        borderRadius: BorderRadius.circular(8),
+      ),
     );
   }
 }

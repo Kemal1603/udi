@@ -20,6 +20,8 @@ dependencies:
     path: ../feature/home
   main:
     path: ../feature/main
+  advert_details:
+    path: ../feature/advert_details
 
 dev_dependencies:
   flutter_lints: ^2.0.2

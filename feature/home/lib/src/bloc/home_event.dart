@@ -13,3 +13,9 @@ class FilterEvent extends HomeEvent {
 
   FilterEvent({required this.filter});
 }
+
+class OpenAdvertEvent extends HomeEvent {
+  final AdvertModel advert;
+
+  OpenAdvertEvent({required this.advert});
+}
