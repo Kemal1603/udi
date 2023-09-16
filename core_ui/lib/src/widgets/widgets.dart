@@ -13,6 +13,7 @@ export 'checkbox_group/app_checkbox.dart';
 export 'checkbox_group/app_checkbox_group.dart';
 export 'custom_divider.dart';
 export 'dropdown/app_dropdown.dart';
+export 'gallery_view.dart';
 export 'image_slider.dart';
 export 'localization_inherited.dart';
 export 'navigation_header.dart';

@@ -15,7 +15,7 @@ class CarImage extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: AppDimens.PADDING_10),
       child: AppImage(
         image: imageUrl,
-        fit: BoxFit.cover,
+        fit: BoxFit.fitWidth,
         borderRadius: BorderRadius.circular(8),
       ),
     );

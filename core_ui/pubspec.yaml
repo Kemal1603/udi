@@ -21,12 +21,15 @@ dependencies:
   responsive_builder: ^0.7.0
   pull_to_refresh: ^2.0.0
 
+
   core:
     path: ../core
   domain:
     path: ../domain
   navigation:
     path: ../navigation
+  easy_image_viewer: ^1.2.1
+
 
 
 dev_dependencies:

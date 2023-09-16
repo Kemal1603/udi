@@ -41,11 +41,7 @@ class AdvertDetailsMobile extends StatelessWidget {
               vertical: AppDimens.PADDING_15,
             ),
             children: <Widget>[
-              ImageSlider(
-                width: MediaQuery.of(context).size.width - 40,
-                height: MediaQuery.of(context).size.aspectRatio * 500,
-                imageUrls: state.advert.imageUrls,
-              ),
+              AppGalleryWidget(imageUrls: state.advert.imageUrls),
               const SizedBox(
                 height: AppDimens.PADDING_10,
               ),
