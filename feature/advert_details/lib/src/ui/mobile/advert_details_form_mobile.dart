@@ -182,3 +182,4 @@ class AdvertDetailsMobile extends StatelessWidget {
       ),
     );
   }
+}
