@@ -47,6 +47,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return LocalizationWidget(
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         localeResolutionCallback: (Locale? locale, Iterable<Locale> supported) {

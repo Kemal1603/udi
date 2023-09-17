@@ -22,6 +22,8 @@ class AppGalleryWidget extends StatelessWidget {
           onViewerDismissed: (page) {
             print("dismissed while on page $page");
           },
+          useSafeArea: true,
+          doubleTapZoomable: true,
         );
       },
       child: ImageSlider(
