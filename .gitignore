@@ -57,3 +57,5 @@ app.*.map.json
 
 # Monarch related
 .monarch/
+
+Makefile
